@@ -54,6 +54,9 @@ initial_roots = [0, 0, 0]  # Disk 0 and Disk 1 are on peg 0
 num_disks = 3
 hanoi_graph = Hanoi(initial_roots, num_disks)
 
+parentTracer = ParentTracer(hanoi_graph)
+
+
 # Define a predicate to find the configuration where all disks are on peg 2
 def is_goal(config):
     return all(peg == 2 for peg in config.pegs)
