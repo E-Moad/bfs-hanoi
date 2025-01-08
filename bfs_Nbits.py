@@ -1,6 +1,7 @@
 from bfs import bfs_travesal, predicate_finder
+from abc import ABC
 
-class Nbits:
+class Nbits(RootedGraph):
     def __init__(self, roots, N):
         self._roots = roots
         self._n = N
