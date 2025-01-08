@@ -1,6 +1,7 @@
 from bfs import bfs_travesal, predicate_finder
+from abc import ABC
 
-class DictRootedGraph:
+class DictRootedGraph(RootedGraph):
     def __init__(self, data, roots):
         self._data = data
         self._roots = roots

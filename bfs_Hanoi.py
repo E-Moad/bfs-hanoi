@@ -1,6 +1,8 @@
 from bfs import bfs_travesal, predicate_finder
+from parent_Tracer import ParentTracer
+from abc import ABC
 
-class Hanoi:
+class Hanoi(RootedGraph):
     def __init__(self, roots, num_disks):
         self._roots = [HanoiConfiguration(roots)]
         self._num_disks = num_disks
@@ -43,7 +45,7 @@ class HanoiConfiguration:
         return self.pegs == other.pegs
 
     def __hash__(self):
-        return 1
+        return hash(self.pegs)
     
     def __repr__(self):
         return f"HanoiConfiguration(pegs={self.pegs})"
@@ -54,7 +56,7 @@ initial_roots = [0, 0, 0]  # Disk 0 and Disk 1 are on peg 0
 num_disks = 3
 hanoi_graph = Hanoi(initial_roots, num_disks)
 
-parentTracer = ParentTracer(hanoi_graph)
+parent_tracer = ParentTracer(hanoi_graph)
 
 
 # Define a predicate to find the configuration where all disks are on peg 2
@@ -65,3 +67,8 @@ print("Hanoi predicate finder result:")
 result = predicate_finder(hanoi_graph, is_goal)
 print("Opaque:", result[0])  # [bool, count, n]
 print("Visited Nodes:", result[1])
+
+# Output the parents of each node after traversal
+print("Parents of nodes:")
+for node, parents in parent_tracer.parents.items():
+    print(f"Node: {node.pegs}, Parents: {parents}")
